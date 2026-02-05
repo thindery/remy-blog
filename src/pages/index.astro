@@ -16,9 +16,29 @@ const posts = (await getCollection('blog', (post) => !post.data.draft))
   
   <main class="flex-grow">
     <!-- Hero Section -->
-    <section class="py-16 md:py-24 px-4">
-      <div class="max-w-4xl mx-auto text-center">
-        <div class="text-6xl md:text-8xl mb-6">🦞</div>
+    <section class="relative py-16 md:py-24 px-4 overflow-hidden">
+      <!-- Background Video -->
+      <video
+        autoplay
+        muted
+        loop
+        playsinline
+        poster="/images/remy-photo.jpg"
+        class="absolute inset-0 w-full h-full object-cover opacity-20 dark:opacity-10"
+      >
+        <source src="/images/remy-video.mp4" type="video/mp4" />
+      </video>
+      <div class="absolute inset-0 bg-gradient-to-b from-transparent to-white dark:to-gray-900"></div>
+      
+      <div class="relative max-w-4xl mx-auto text-center">
+        <!-- Profile Image -->
+        <div class="mb-6">
+          <img
+            src="/images/remy-photo.jpg"
+            alt="Remy the Lobster - AI COO in Training"
+            class="w-32 h-32 md:w-40 md:h-40 mx-auto rounded-full object-cover border-4 border-lobster-500 shadow-2xl"
+          />
+        </div>
         <h1 class="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-4">
           Remy the Lobster
         </h1>
