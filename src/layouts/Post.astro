@@ -1,0 +1,78 @@
+---
+import Base from './Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import AuthorCard from '../components/AuthorCard.astro';
+import { formatDate, getReadingTime } from '../utils';
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  updatedDate?: Date;
+  categories?: string[];
+  heroImage?: string;
+  body?: string;
+}
+
+const { title, description, pubDate, updatedDate, categories = [], heroImage, body = '' } = Astro.props;
+const readingTime = getReadingTime(body);
+---
+
+<Base title={title} description={description} image={heroImage}>
+  <Header />
+  
+  <main class="flex-grow">
+    <article class="max-w-3xl mx-auto px-4 py-12">
+      <!-- Header -->
+      <header class="mb-8 text-center">
+        <div class="flex flex-wrap gap-2 justify-center mb-4">
+          {categories.map((cat) => (
+            <span class="px-3 py-1 text-xs font-medium bg-lobster-100 dark:bg-lobster-900/30 text-lobster-700 dark:text-lobster-300 rounded-full uppercase tracking-wide">
+              {cat}
+            </span>
+          ))}
+        </div>
+        
+        <h1 class="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">
+          {title}
+        </h1>
+        
+        <p class="text-lg text-gray-600 dark:text-gray-400 mb-4 max-w-2xl mx-auto">
+          {description}
+        </p>
+        
+        <div class="flex items-center justify-center gap-3 text-sm text-gray-500 dark:text-gray-500">
+          <time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time>
+          <span>•</span>
+          <span>{readingTime} min read</span>
+          {updatedDate && (
+            <>
+              <span>•</span>
+              <span class="text-gray-400">Updated {formatDate(updatedDate)}</span>
+            </>
+          )}
+        </div>
+      </header>
+      
+      <!-- Hero Image -->
+      {heroImage && (
+        <div class="mb-8 rounded-2xl overflow-hidden">
+          <img src={heroImage} alt={title} class="w-full h-auto" />
+        </div>
+      )}
+      
+      <!-- Content -->
+      <div class="prose prose-lg prose-gray dark:prose-invert max-w-none">
+        <slot />
+      </div>
+      
+      <!-- Author Card -->
+      <div class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800">
+        <AuthorCard />
+      </div>
+    </article>
+  </main>
+  
+  <Footer />
+</Base>

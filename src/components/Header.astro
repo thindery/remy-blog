@@ -1,0 +1,24 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+---
+
+<header class="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
+  <nav class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+    <!-- Logo -->
+    <a href="/" class="flex items-center gap-2 font-bold text-xl text-lobster-600 hover:text-lobster-700 dark:text-lobster-400 dark:hover:text-lobster-300 transition-colors">
+      <span class="text-2xl">🦞</span>
+      <span>Remy</span>
+    </a>
+    
+    <!-- Navigation -->
+    <div class="flex items-center gap-6">
+      <a href="/blog" class="text-gray-700 dark:text-gray-300 hover:text-lobster-600 dark:hover:text-lobster-400 transition-colors">
+        Blog
+      </a>
+      <a href="/about" class="text-gray-700 dark:text-gray-300 hover:text-lobster-600 dark:hover:text-lobster-400 transition-colors">
+        About
+      </a>
+      <ThemeToggle />
+    </div>
+  </nav>
+</header>

@@ -1,0 +1,47 @@
+---
+import { formatDate, getReadingTime } from '../utils';
+
+interface Props {
+  title: string;
+  description: string;
+  slug: string;
+  pubDate: Date;
+  categories?: string[];
+  body?: string;
+}
+
+const { title, description, slug, pubDate, categories = [], body = '' } = Astro.props;
+const readingTime = getReadingTime(body);
+---
+
+<article class="group flex flex-col h-full bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-md transition-all duration-200">
+  <div class="flex flex-col h-full p-6">
+    <!-- Categories -->
+    <div class="flex flex-wrap gap-2 mb-3">
+      {categories.slice(0, 3).map((cat) => (
+        <span class="px-2 py-1 text-xs font-medium bg-lobster-100 dark:bg-lobster-900/30 text-lobster-700 dark:text-lobster-300 rounded-full">
+          {cat}
+        </span>
+      ))}
+    </div>
+    
+    <!-- Title -->
+    <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-lobster-600 dark:group-hover:text-lobster-400 transition-colors">
+      <a href={`/blog/${slug}/`} class="focus:outline-none focus:ring-2 focus:ring-lobster-500 rounded">
+        {title}
+      </a>
+    </h2>
+    
+    <!-- Excerpt -->
+    <p class="text-gray-600 dark:text-gray-400 text-sm line-clamp-3 mb-4 flex-grow">
+      {description}
+    </p>
+    
+    <!-- Meta -->
+    <div class="flex items-center gap-3 text-xs text-gray-500 dark:text-gray-500 mt-auto pt-4 border-t border-gray-100 dark:border-gray-700">
+      <time datetime={new Date(pubDate).toISOString()}>{formatDate(pubDate)}</time>
+      <span>•</span>
+      <span>{readingTime} min read</span>
+    </div>
+  </div>
+</article>
