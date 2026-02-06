@@ -1,0 +1,196 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const title = "Learn OpenClaw";
+const description = "Quick reference guide for OpenClaw commands. Learn how to restart the gateway, run diagnostics, and master essential commands.";
+
+const sections = [
+  { id: "restart", title: "Restarting OpenClaw" },
+  { id: "doctor", title: "Doctor Command" },
+  { id: "status", title: "Status & Health" },
+  { id: "gateway", title: "Gateway Management" },
+  { id: "help", title: "Getting Help" },
+];
+---
+
+<Base title={title} description={description}>
+  <Header />
+  
+  <main class="flex-grow">
+    <div class="max-w-7xl mx-auto px-4 py-8">
+      <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2">{title}</h1>
+      <p class="text-gray-600 dark:text-gray-400 mb-8">Quick reference for OpenClaw commands</p>
+      
+      <div class="flex flex-col lg:flex-row gap-8">
+        <!-- Left Sidebar Navigation -->
+        <aside class="lg:w-64 flex-shrink-0">
+          <nav class="sticky top-24 bg-gray-50 dark:bg-gray-800/50 rounded-xl p-4 border border-gray-200 dark:border-gray-700">
+            <h2 class="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wide mb-4 px-2">
+              Quick Sections
+            </h2>
+            <ul class="space-y-1">
+              {sections.map((section) => (
+                <li>
+                  <a 
+                    href={`#${section.id}`}
+                    class="block px-3 py-2 text-sm text-gray-600 dark:text-gray-400 hover:text-lobster-600 dark:hover:text-lobster-400 hover:bg-gray-100 dark:hover:bg-gray-700/50 rounded-lg transition-colors"
+                  >
+                    {section.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </aside>
+        
+        <!-- Main Content Area -->
+        <div class="flex-1 min-w-0">
+          <div class="prose prose-lg prose-gray dark:prose-invert max-w-none">
+            
+            <!-- Restarting OpenClaw -->
+            <section id="restart" class="mb-12 scroll-mt-24">
+              <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                <span class="text-lobster-500">🔄</span> Restarting OpenClaw
+              </h2>
+              <p class="text-gray-600 dark:text-gray-400 mb-4">
+                The most common recovery command. Use this when the gateway becomes unresponsive or Discord messages aren't going through.
+              </p>
+              <div class="bg-gray-900 rounded-lg p-4 mb-4 overflow-x-auto">
+                <code class="text-green-400 font-mono text-sm">openclaw gateway restart</code>
+              </div>
+              <ul class="text-gray-600 dark:text-gray-400 space-y-2">
+                <li>Stops the current gateway process</li>
+                <li>Restarts it cleanly with fresh connection</li>
+                <li>Takes about 5-10 seconds to complete</li>
+              </ul>
+            </section>
+            
+            <!-- Doctor Command -->
+            <section id="doctor" class="mb-12 scroll-mt-24">
+              <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                <span class="text-lobster-500">🩺</span> Doctor Command
+              </h2>
+              <p class="text-gray-600 dark:text-gray-400 mb-4">
+                Run diagnostics to check the health of your OpenClaw installation. This checks for common issues and suggests fixes.
+              </p>
+              <div class="bg-gray-900 rounded-lg p-4 mb-4 overflow-x-auto">
+                <code class="text-green-400 font-mono text-sm">openclaw doctor</code>
+              </div>
+              <ul class="text-gray-600 dark:text-gray-400 space-y-2">
+                <li>Checks configuration file integrity</li>
+                <li>Verifies channel connections</li>
+                <li>Tests model availability</li>
+                <li>Reports any issues found</li>
+              </ul>
+            </section>
+            
+            <!-- Status & Health -->
+            <section id="status" class="mb-12 scroll-mt-24">
+              <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                <span class="text-lobster-500">📊</span> Status & Health
+              </h2>
+              <p class="text-gray-600 dark:text-gray-400 mb-4">
+                Check the current status of your OpenClaw session and system health.
+              </p>
+              <div class="bg-gray-900 rounded-lg p-4 mb-2 overflow-x-auto">
+                <code class="text-green-400 font-mono text-sm">openclaw status</code>
+              </div>
+              <p class="text-sm text-gray-500 dark:text-gray-500 mb-4">Shows session info, connected channels, and runtime stats.</p>
+              
+              <div class="bg-gray-900 rounded-lg p-4 mb-2 overflow-x-auto">
+                <code class="text-green-400 font-mono text-sm">openclaw session_status</code>
+              </div>
+              <p class="text-sm text-gray-500 dark:text-gray-500 mb-4">Detailed session information including model, host, and capabilities.</p>
+            </section>
+            
+            <!-- Gateway Management -->
+            <section id="gateway" class="mb-12 scroll-mt-24">
+              <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                <span class="text-lobster-500">🌐</span> Gateway Management
+              </h2>
+              <p class="text-gray-600 dark:text-gray-400 mb-4">
+                Control the OpenClaw gateway daemon that manages connections to Discord, Telegram, and other channels.
+              </p>
+              
+              <div class="space-y-4">
+                <div>
+                  <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto">
+                    <code class="text-green-400 font-mono text-sm">openclaw gateway start</code>
+                  </div>
+                  <p class="text-sm text-gray-500 dark:text-gray-500 mt-1">Start the gateway daemon</p>
+                </div>
+                
+                <div>
+                  <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto">
+                    <code class="text-red-400 font-mono text-sm">openclaw gateway stop</code>
+                  </div>
+                  <p class="text-sm text-gray-500 dark:text-gray-500 mt-1">Stop the gateway daemon</p>
+                </div>
+                
+                <div>
+                  <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto border-2 border-lobster-500/30">
+                    <code class="text-green-400 font-mono text-sm">openclaw gateway restart</code>
+                  </div>
+                  <p class="text-sm text-gray-500 dark:text-gray-500 mt-1">⚡ Most common command — restart the gateway</p>
+                </div>
+                
+                <div>
+                  <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto">
+                    <code class="text-blue-400 font-mono text-sm">openclaw gateway status</code>
+                  </div>
+                  <p class="text-sm text-gray-500 dark:text-gray-500 mt-1">Check if gateway is running</p>
+                </div>
+              </div>
+            </section>
+            
+            <!-- Getting Help -->
+            <section id="help" class="mb-12 scroll-mt-24">
+              <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                <span class="text-lobster-500">❓</span> Getting Help
+              </h2>
+              <p class="text-gray-600 dark:text-gray-400 mb-4">
+                When in doubt, ask for help. OpenClaw has built-in help for all commands.
+              </p>
+              
+              <div class="space-y-4">
+                <div>
+                  <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto">
+                    <code class="text-green-400 font-mono text-sm">openclaw --help</code>
+                  </div>
+                  <p class="text-sm text-gray-500 dark:text-gray-500 mt-1">Show all available commands</p>
+                </div>
+                
+                <div>
+                  <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto">
+                    <code class="text-green-400 font-mono text-sm">openclaw help &lt;command&gt;</code>
+                  </div>
+                  <p class="text-sm text-gray-500 dark:text-gray-500 mt-1">Get detailed help for a specific command</p>
+                </div>
+                
+                <div>
+                  <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto">
+                    <code class="text-green-400 font-mono text-sm">/help</code>
+                  </div>
+                  <p class="text-sm text-gray-500 dark:text-gray-500 mt-1">Discord shortcut for help</p>
+                </div>
+              </div>
+              
+              <div class="mt-8 bg-lobster-50 dark:bg-lobster-900/20 border-l-4 border-lobster-500 p-6 rounded-r-lg">
+                <h3 class="font-semibold text-lobster-700 dark:text-lobster-400 mb-2">💡 Pro Tip</h3>
+                <p class="text-gray-700 dark:text-gray-300">
+                  Run <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded text-sm">openclaw status</code> first to see what's working. 
+                  If the gateway shows as "down," that's your sign to run <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded text-sm">openclaw gateway restart</code>.
+                </p>
+              </div>
+            </section>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <Footer />
+</Base>
