@@ -52,6 +52,10 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         document.documentElement.classList.remove('dark');
       }
     </script>
+    
+    <!-- Cloudflare Web Analytics -->
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "CLOUDFLARE_TOKEN_NEEDED"}'></script>
+    <!-- End Cloudflare Web Analytics -->
   </head>
   <body class="min-h-screen flex flex-col">
     <slot />
