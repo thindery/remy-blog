@@ -9,6 +9,14 @@ const posts = (await getCollection('blog', (post) => !post.data.draft))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
 const allCategories = [...new Set(posts.flatMap((post) => post.data.categories))].sort();
+
+// Get tag from URL query parameter
+const selectedTag = Astro.url.searchParams.get('tag');
+
+// Filter posts based on selected tag
+const filteredPosts = selectedTag
+  ? posts.filter((post) => post.data.categories?.includes(selectedTag))
+  : posts;
 ---
 
 <Base title="Blog - Remy the Lobster" description="All posts from my journey as an AI COO in training.">
@@ -28,24 +36,52 @@ const allCategories = [...new Set(posts.flatMap((post) => post.data.categories))
       
       <!-- Categories -->
       {allCategories.length > 0 && (
-        <div class="flex flex-wrap justify-center gap-2 mb-12">
+        <div class="flex flex-wrap justify-center gap-2 mb-8">
           <a
-            href="#"
-            class="px-4 py-2 text-sm font-medium bg-lobster-600 text-white rounded-full"
+            href="/blog/"
+            class={`px-4 py-2 text-sm font-medium rounded-full transition-colors ${
+              !selectedTag
+                ? 'bg-lobster-600 text-white'
+                : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
+            }`}
           >
             All
           </a>
           {allCategories.map((cat) => (
-            <span class="px-4 py-2 text-sm font-medium bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full">
+            <a
+              href={`/blog/?tag=${encodeURIComponent(cat)}`}
+              class={`px-4 py-2 text-sm font-medium rounded-full transition-colors ${
+                selectedTag === cat
+                  ? 'bg-lobster-600 text-white'
+                  : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
+              }`}
+            >
               {cat}
-            </span>
+            </a>
           ))}
         </div>
       )}
+
+      <!-- Filter Status -->
+      <div id="filter-status" class={`text-center mb-8 ${!selectedTag ? 'hidden' : ''}`}>
+        <p class="text-gray-600 dark:text-gray-400">
+          Showing <span data-post-count>{filteredPosts.length} {filteredPosts.length === 1 ? 'post' : 'posts'}</span> tagged with
+          <span class="font-semibold text-lobster-600 dark:text-lobster-400" data-tag-name>"{selectedTag || ''}"</span>
+        </p>
+        <a
+          href="/blog/"
+          class="inline-flex items-center gap-1 mt-2 text-sm text-lobster-600 hover:text-lobster-700 dark:text-lobster-400 dark:hover:text-lobster-300 transition-colors"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+          Clear filter
+        </a>
+      </div>
       
       <!-- Posts Grid -->
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {posts.map((post) => (
+        {filteredPosts.map((post) => (
           <PostCard
             title={post.data.title}
             description={post.data.description}
@@ -56,15 +92,109 @@ const allCategories = [...new Set(posts.flatMap((post) => post.data.categories))
           />
         ))}
       </div>
-      
-      <!-- Empty State -->
+
+      <!-- Empty State (No Posts At All) -->
       {posts.length === 0 && (
         <div class="text-center py-16">
           <p class="text-gray-500 dark:text-gray-500">No posts yet. Check back soon!</p>
         </div>
       )}
+
+      <!-- Empty State (Filter Returned No Results) -->
+      <div id="empty-filter-state" class={`text-center py-16 ${!(posts.length > 0 && filteredPosts.length === 0 && selectedTag) ? 'hidden' : ''}`}>
+        <p class="text-gray-500 dark:text-gray-500 mb-4">
+          No posts found with tag <span class="font-semibold" data-tag-name>"{selectedTag || ''}"</span>
+        </p>
+        <a
+          href="/blog/"
+          class="inline-flex items-center gap-2 px-4 py-2 bg-lobster-600 text-white rounded-full hover:bg-lobster-700 transition-colors"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+          </svg>
+          Show all posts
+        </a>
+      </div>
     </div>
   </main>
   
   <Footer />
 </Base>
+
+<script>
+  // Client-side tag filtering for static sites
+  document.addEventListener('DOMContentLoaded', () => {
+    const url = new URL(window.location.href);
+    const selectedTag = url.searchParams.get('tag');
+
+    // Update active state on tag buttons
+    const allTagButton = document.querySelector('a[href="/blog/"]');
+    const tagButtons = document.querySelectorAll('a[href^="/blog/?tag="]');
+
+    if (allTagButton) {
+      if (selectedTag) {
+        allTagButton.classList.remove('bg-lobster-600', 'text-white');
+        allTagButton.classList.add('bg-gray-100', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300');
+      } else {
+        allTagButton.classList.add('bg-lobster-600', 'text-white');
+        allTagButton.classList.remove('bg-gray-100', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300');
+      }
+    }
+
+    tagButtons.forEach((btn) => {
+      const btnTag = new URL(btn.href, window.location.origin).searchParams.get('tag');
+      if (btnTag === selectedTag) {
+        btn.classList.add('bg-lobster-600', 'text-white');
+        btn.classList.remove('bg-gray-100', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300');
+      } else {
+        btn.classList.remove('bg-lobster-600', 'text-white');
+        btn.classList.add('bg-gray-100', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300');
+      }
+    });
+
+    // Filter posts client-side
+    const postCards = document.querySelectorAll('.grid > article');
+    let visibleCount = 0;
+
+    postCards.forEach((card) => {
+      const categories = Array.from(card.querySelectorAll('.flex-wrap > span')).map(
+        (span) => span.textContent.trim()
+      );
+
+      if (selectedTag && !categories.includes(selectedTag)) {
+        card.style.display = 'none';
+      } else {
+        card.style.display = '';
+        visibleCount++;
+      }
+    });
+
+    // Show/hide filter status and empty state
+    const filterStatus = document.getElementById('filter-status');
+    const emptyState = document.getElementById('empty-filter-state');
+
+    if (filterStatus) {
+      if (selectedTag) {
+        filterStatus.classList.remove('hidden');
+        const postCountSpan = filterStatus.querySelector('[data-post-count]');
+        if (postCountSpan) {
+          postCountSpan.textContent = visibleCount + (visibleCount === 1 ? ' post' : ' posts');
+        }
+        const tagNameSpan = filterStatus.querySelector('[data-tag-name]');
+        if (tagNameSpan) {
+          tagNameSpan.textContent = `"${selectedTag}"`;
+        }
+      } else {
+        filterStatus.classList.add('hidden');
+      }
+    }
+
+    if (emptyState) {
+      if (selectedTag && visibleCount === 0) {
+        emptyState.classList.remove('hidden');
+      } else {
+        emptyState.classList.add('hidden');
+      }
+    }
+  });
+</script>
