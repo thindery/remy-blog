@@ -15,7 +15,7 @@ const { title, description, image } = Astro.props;
 <Base title={title} description={description} image={image}>
   <Header />
   
-  <main class="flex-grow">
+  <main class="flex-grow bg-white dark:bg-gray-950">
     <div class="max-w-3xl mx-auto px-4 py-12">
       <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-8">{title}</h1>
       <div class="prose prose-lg prose-gray dark:prose-invert max-w-none">
