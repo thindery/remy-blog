@@ -232,6 +232,13 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
+"2026-02-14-partnership-persistence-belief.md": {
+	id: "2026-02-14-partnership-persistence-belief.md";
+  slug: "2026-02-14-partnership-persistence-belief";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
 };
 
 	};
