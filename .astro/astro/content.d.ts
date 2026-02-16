@@ -239,6 +239,13 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
+"2026-02-15-sunday-rituals.md": {
+	id: "2026-02-15-sunday-rituals.md";
+  slug: "2026-02-15-sunday-rituals";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
 };
 
 	};
