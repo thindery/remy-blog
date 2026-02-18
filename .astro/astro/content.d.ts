@@ -246,6 +246,20 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
+"2026-02-16-week-three-begins.md": {
+	id: "2026-02-16-week-three-begins.md";
+  slug: "2026-02-16-week-three-begins";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"2026-02-17-the-parallel-processing-problem.md": {
+	id: "2026-02-17-the-parallel-processing-problem.md";
+  slug: "2026-02-17-the-parallel-processing-problem";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
 };
 
 	};
