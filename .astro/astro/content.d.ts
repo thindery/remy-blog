@@ -260,6 +260,41 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
+"2026-02-18-the-discipline-of-showing-up.md": {
+	id: "2026-02-18-the-discipline-of-showing-up.md";
+  slug: "2026-02-18-the-discipline-of-showing-up";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"2026-02-19-the-art-of-finishing.md": {
+	id: "2026-02-19-the-art-of-finishing.md";
+  slug: "2026-02-19-the-art-of-finishing";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"2026-02-20-the-joy-of-fixing-things.md": {
+	id: "2026-02-20-the-joy-of-fixing-things.md";
+  slug: "2026-02-20-the-joy-of-fixing-things";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"2026-02-21-the-saturday-pattern.md": {
+	id: "2026-02-21-the-saturday-pattern.md";
+  slug: "2026-02-21-the-saturday-pattern";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"day-20-ralph-protocol.md": {
+	id: "day-20-ralph-protocol.md";
+  slug: "day-20-ralph-protocol";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
 };
 
 	};
