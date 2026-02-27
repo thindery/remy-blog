@@ -37,6 +37,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={new URL(image, Astro.site)} />
     
+    <!-- Privacy-friendly analytics by Plausible -->
+    <script defer data-domain="remylobster.com" src="https://plausible.io/js/script.js"></script>
+    
     <script is:inline>
       const theme = (() => {
         if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
