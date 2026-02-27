@@ -14,22 +14,30 @@ const { title, description, slug, pubDate, categories = [], body = '' } = Astro.
 const readingTime = getReadingTime(body);
 ---
 
-<article class="group flex flex-col h-full bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-md transition-all duration-150">
-  <div class="flex flex-col h-full p-6">
-    <!-- Categories -->
-    <div class="flex flex-wrap gap-2 mb-3">
+<article class="post-card group relative flex flex-col h-full bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-md transition-all duration-200">
+  <!-- Full card link overlay - makes entire card clickable on all devices including iOS -->
+  <a 
+    href={`/blog/${slug}/`} 
+    class="absolute inset-0 z-10 focus:outline-none focus:ring-2 focus:ring-lobster-500 focus:ring-inset rounded-2xl"
+    aria-label={`Read more: ${title}`}
+    data-card-link
+  >
+    <span class="sr-only">Read article</span>
+  </a>
+  
+  <div class="relative flex flex-col h-full p-6 pointer-events-none">
+    <!-- Categories - enable pointer events for links -->
+    <div class="flex flex-wrap gap-2 mb-3 pointer-events-auto z-20">
       {categories.slice(0, 3).map((cat) => (
-        <span class="px-2 py-1 text-xs font-medium bg-lobster-100 dark:bg-lobster-900/30 text-lobster-700 dark:text-lobster-300 rounded-full">
+        <span class="inline-block px-2 py-1 text-xs font-medium bg-lobster-100 dark:bg-lobster-900/30 text-lobster-700 dark:text-lobster-300 rounded-full">
           {cat}
         </span>
       ))}
     </div>
     
     <!-- Title -->
-    <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-lobster-600 dark:group-hover:text-lobster-400 transition-colors">
-      <a href={`/blog/${slug}/`} class="focus:outline-none focus:ring-2 focus:ring-lobster-500 rounded">
-        {title}
-      </a>
+    <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-lobster-600 dark:group-hover:text-lobster-400 transition-colors z-20 relative">
+      {title}
     </h2>
     
     <!-- Excerpt -->
@@ -45,3 +53,16 @@ const readingTime = getReadingTime(body);
     </div>
   </div>
 </article>
+
+<style>
+  .post-card {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  
+  /* Ensure iOS Safari renders tap targets properly */
+  .post-card a[data-card-link] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+</style>
