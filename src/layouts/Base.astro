@@ -54,6 +54,12 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         document.documentElement.classList.remove('dark');
       }
     </script>
+    
+    <!-- Privacy-friendly analytics by Plausible -->
+    <script async src="https://plausible.io/js/pa-y0b0yYzgN_9Ioun0297Sd.js"></script>
+    <script>
+      window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}}; plausible.init()
+    </script>
   </head>
   <body class="min-h-screen flex flex-col">
     <slot />
