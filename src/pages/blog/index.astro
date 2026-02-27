@@ -8,10 +8,27 @@ import { getCollection } from 'astro:content';
 const posts = (await getCollection('blog', (post) => !post.data.draft))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-const allCategories = [...new Set(posts.flatMap((post) => post.data.categories))].sort();
+// Calculate tag popularity (post count per tag)
+const tagCounts = posts.reduce((acc, post) => {
+  post.data.categories?.forEach(cat => {
+    acc[cat] = (acc[cat] || 0) + 1;
+  });
+  return acc;
+}, {} as Record<string, number>);
+
+// Sort tags by popularity (post count), then alphabetically for ties
+const allCategories = Object.entries(tagCounts)
+  .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+  .map(([tag]) => tag);
+
+// Show top 6 popular tags, rest go in dropdown
+const POPULAR_TAG_COUNT = 6;
+const popularTags = allCategories.slice(0, POPULAR_TAG_COUNT);
+const moreTags = allCategories.slice(POPULAR_TAG_COUNT);
 
 // Get tag from URL query parameter
 const selectedTag = Astro.url.searchParams.get('tag');
+const isSelectedTagInMore = selectedTag && moreTags.includes(selectedTag);
 
 // Filter posts based on selected tag
 const filteredPosts = selectedTag
@@ -36,7 +53,7 @@ const filteredPosts = selectedTag
       
       <!-- Categories -->
       {allCategories.length > 0 && (
-        <div class="flex flex-wrap justify-center gap-2 mb-8">
+        <div class="flex flex-wrap justify-center gap-2 mb-8" data-tag-filter>
           <a
             href="/blog/"
             class={`px-4 py-2 text-sm font-medium rounded-full transition-colors ${
@@ -44,10 +61,11 @@ const filteredPosts = selectedTag
                 ? 'bg-lobster-600 text-white'
                 : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
             }`}
+            data-filter-btn="all"
           >
             All
           </a>
-          {allCategories.map((cat) => (
+          {popularTags.map((cat) => (
             <a
               href={`/blog/?tag=${encodeURIComponent(cat)}`}
               class={`px-4 py-2 text-sm font-medium rounded-full transition-colors ${
@@ -55,10 +73,60 @@ const filteredPosts = selectedTag
                   ? 'bg-lobster-600 text-white'
                   : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
               }`}
+              data-filter-btn={cat}
             >
               {cat}
             </a>
           ))}
+          {moreTags.length > 0 && (
+            <div class="relative" data-more-tags-wrapper>
+              <button
+                type="button"
+                class={`px-4 py-2 text-sm font-medium rounded-full transition-colors flex items-center gap-1 ${
+                  isSelectedTagInMore
+                    ? 'bg-lobster-600 text-white'
+                    : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
+                }`}
+                aria-expanded="false"
+                aria-haspopup="listbox"
+                data-more-tags-btn
+              >
+                {isSelectedTagInMore ? selectedTag : 'More tags'}
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  class="w-4 h-4 transition-transform" 
+                  fill="none" 
+                  viewBox="0 0 24 24" 
+                  stroke="currentColor"
+                  data-more-tags-icon
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div
+                class="absolute top-full left-0 mt-2 min-w-[200px] max-h-[300px] overflow-y-auto bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 p-2 hidden z-50"
+                role="listbox"
+                data-more-tags-dropdown
+              >
+                {moreTags.map((cat) => (
+                  <a
+                    href={`/blog/?tag=${encodeURIComponent(cat)}`}
+                    class={`block px-3 py-2 text-sm rounded-lg transition-colors ${
+                      selectedTag === cat
+                        ? 'bg-lobster-100 dark:bg-lobster-900/30 text-lobster-700 dark:text-lobster-300'
+                        : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                    }`}
+                    role="option"
+                    aria-selected={selectedTag === cat}
+                    data-more-tag-item
+                  >
+                    {cat}
+                    <span class="ml-2 text-xs text-gray-500">({tagCounts[cat]})</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       )}
 
@@ -128,8 +196,8 @@ const filteredPosts = selectedTag
     const selectedTag = url.searchParams.get('tag');
 
     // Update active state on tag buttons
-    const allTagButton = document.querySelector('a[href="/blog/"]');
-    const tagButtons = document.querySelectorAll('a[href^="/blog/?tag="]');
+    const allTagButton = document.querySelector('[data-filter-btn="all"]');
+    const visibleTagButtons = document.querySelectorAll('[data-filter-btn]:not([data-filter-btn="all"])');
 
     if (allTagButton) {
       if (selectedTag) {
@@ -141,8 +209,8 @@ const filteredPosts = selectedTag
       }
     }
 
-    tagButtons.forEach((btn) => {
-      const btnTag = new URL(btn.href, window.location.origin).searchParams.get('tag');
+    visibleTagButtons.forEach((btn) => {
+      const btnTag = btn.getAttribute('data-filter-btn');
       if (btnTag === selectedTag) {
         btn.classList.add('bg-lobster-600', 'text-white');
         btn.classList.remove('bg-gray-100', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300');
@@ -151,6 +219,66 @@ const filteredPosts = selectedTag
         btn.classList.add('bg-gray-100', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300');
       }
     });
+
+    // More tags dropdown functionality
+    const moreTagsWrapper = document.querySelector('[data-more-tags-wrapper]');
+    const moreTagsBtn = document.querySelector('[data-more-tags-btn]');
+    const moreTagsDropdown = document.querySelector('[data-more-tags-dropdown]');
+    const moreTagsIcon = document.querySelector('[data-more-tags-icon]');
+
+    if (moreTagsBtn && moreTagsDropdown) {
+      let isOpen = false;
+
+      const toggleDropdown = () => {
+        isOpen = !isOpen;
+        moreTagsBtn.setAttribute('aria-expanded', isOpen);
+        if (isOpen) {
+          moreTagsDropdown.classList.remove('hidden');
+          moreTagsIcon?.classList.add('rotate-180');
+        } else {
+          moreTagsDropdown.classList.add('hidden');
+          moreTagsIcon?.classList.remove('rotate-180');
+        }
+      };
+
+      const closeDropdown = () => {
+        isOpen = false;
+        moreTagsBtn.setAttribute('aria-expanded', 'false');
+        moreTagsDropdown.classList.add('hidden');
+        moreTagsIcon?.classList.remove('rotate-180');
+      };
+
+      moreTagsBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleDropdown();
+      });
+
+      // Close on outside click
+      document.addEventListener('click', (e) => {
+        if (isOpen && moreTagsWrapper && !moreTagsWrapper.contains(e.target)) {
+          closeDropdown();
+        }
+      });
+
+      // Close on escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && isOpen) {
+          closeDropdown();
+        }
+      });
+
+      // Update active state for dropdown items
+      const moreTagItems = document.querySelectorAll('[data-more-tag-item]');
+      moreTagItems.forEach((item) => {
+        const itemUrl = new URL(item.href, window.location.origin);
+        const itemTag = itemUrl.searchParams.get('tag');
+        if (itemTag === selectedTag) {
+          item.classList.add('bg-lobster-100', 'dark:bg-lobster-900/30', 'text-lobster-700', 'dark:text-lobster-300');
+          item.classList.remove('text-gray-700', 'dark:text-gray-300', 'hover:bg-gray-100', 'dark:hover:bg-gray-700');
+        }
+      });
+    }
 
     // Filter posts client-side
     const postCards = document.querySelectorAll('.grid > article');

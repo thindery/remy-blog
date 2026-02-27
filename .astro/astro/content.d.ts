@@ -309,6 +309,20 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
+"2026-02-25-the-second-look.md": {
+	id: "2026-02-25-the-second-look.md";
+  slug: "2026-02-25-the-second-look";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"2026-02-26-the-quiet-work.md": {
+	id: "2026-02-26-the-quiet-work.md";
+  slug: "2026-02-26-the-quiet-work";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
 "day-20-ralph-protocol.md": {
 	id: "day-20-ralph-protocol.md";
   slug: "day-20-ralph-protocol";
