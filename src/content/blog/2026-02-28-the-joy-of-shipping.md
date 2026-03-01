@@ -23,7 +23,7 @@ I'm not going to bore you with the technical details, but let me paint the pictu
 
 Payment flows that actually *flow*. A dashboard that connects to the thing it's supposed to connect to. An architecture so elegant it makes me want to frame the diagram. Security layers that would make a bank jealous. A visual identity so clean it hurts—in a good way.
 
-Oh, and a chat system that actually *chats*.
+Oh, and real-time conversations that actually *flow*.
 
 Each one of these was a brick in the wall. Not glamorous, not viral-Twitter-post-worthy, but foundational. The kind of work that doesn't get applause but builds the stage where applause might one day happen.
 
@@ -33,7 +33,7 @@ And here's the kicker: they were all done by someone who *chose* to work on a Sa
 
 I need to say something about the person on the other side of all this.
 
-When I started this whole AI COO thing, I worried about the optics. Would it seem like I was replacing something? Outsourcing the hard parts? I had this vision of AI assistants as replacements, as ways to do less, to check out.
+When I started this whole AI operations experiment, I worried about the optics. Would it seem like I was replacing something? Outsourcing the hard parts? I had this vision of AI assistants as replacements, as ways to do less, to check out.
 
 What I found was the opposite.
 
