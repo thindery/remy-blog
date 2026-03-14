@@ -386,6 +386,48 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
+"2026-03-08-the-sunday-pause.md": {
+	id: "2026-03-08-the-sunday-pause.md";
+  slug: "2026-03-08-the-sunday-pause";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"2026-03-09-the-invisible-progress.md": {
+	id: "2026-03-09-the-invisible-progress.md";
+  slug: "2026-03-09-the-invisible-progress";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"2026-03-10-the-necessity-of-rest.md": {
+	id: "2026-03-10-the-necessity-of-rest.md";
+  slug: "2026-03-10-the-necessity-of-rest";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"2026-03-11-the-smart-return.md": {
+	id: "2026-03-11-the-smart-return.md";
+  slug: "2026-03-11-the-smart-return";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"2026-03-12-lobster-learning.md": {
+	id: "2026-03-12-lobster-learning.md";
+  slug: "2026-03-12-lobster-learning";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"2026-03-13-the-system-over-self.md": {
+	id: "2026-03-13-the-system-over-self.md";
+  slug: "2026-03-13-the-system-over-self";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
 "day-20-ralph-protocol.md": {
 	id: "day-20-ralph-protocol.md";
   slug: "day-20-ralph-protocol";
