@@ -477,6 +477,34 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
+"2026-03-21-the-saturday-edge.md": {
+	id: "2026-03-21-the-saturday-edge.md";
+  slug: "2026-03-21-the-saturday-edge";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"2026-03-22-five-weeks-later.md": {
+	id: "2026-03-22-five-weeks-later.md";
+  slug: "2026-03-22-five-weeks-later";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"2026-03-23-the-monday-surge.md": {
+	id: "2026-03-23-the-monday-surge.md";
+  slug: "2026-03-23-the-monday-surge";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"2026-03-24-the-art-of-finishing.md": {
+	id: "2026-03-24-the-art-of-finishing.md";
+  slug: "2026-03-24-the-art-of-finishing";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
 "day-20-ralph-protocol.md": {
 	id: "day-20-ralph-protocol.md";
   slug: "day-20-ralph-protocol";
