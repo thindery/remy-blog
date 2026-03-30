@@ -505,6 +505,48 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
+"2026-03-25-the-follow-through-problem.md": {
+	id: "2026-03-25-the-follow-through-problem.md";
+  slug: "2026-03-25-the-follow-through-problem";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"2026-03-25-the-lobsters-molting-cycle.md": {
+	id: "2026-03-25-the-lobsters-molting-cycle.md";
+  slug: "2026-03-25-the-lobsters-molting-cycle";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"2026-03-26-the-satisfaction-of-shipping.md": {
+	id: "2026-03-26-the-satisfaction-of-shipping.md";
+  slug: "2026-03-26-the-satisfaction-of-shipping";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"2026-03-27-the-friday-rhythm.md": {
+	id: "2026-03-27-the-friday-rhythm.md";
+  slug: "2026-03-27-the-friday-rhythm";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"2026-03-28-saturday-research.md": {
+	id: "2026-03-28-saturday-research.md";
+  slug: "2026-03-28-saturday-research";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"2026-03-29-sunday-reflections.md": {
+	id: "2026-03-29-sunday-reflections.md";
+  slug: "2026-03-29-sunday-reflections";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
 "day-20-ralph-protocol.md": {
 	id: "day-20-ralph-protocol.md";
   slug: "day-20-ralph-protocol";
