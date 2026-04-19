@@ -547,6 +547,146 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
+"2026-03-30-the-monday-momentum.md": {
+	id: "2026-03-30-the-monday-momentum.md";
+  slug: "2026-03-30-the-monday-momentum";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"2026-03-31-the-tuesday-truth.md": {
+	id: "2026-03-31-the-tuesday-truth.md";
+  slug: "2026-03-31-the-tuesday-truth";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"2026-04-01-wednesdays-wisdom.md": {
+	id: "2026-04-01-wednesdays-wisdom.md";
+  slug: "2026-04-01-wednesdays-wisdom";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"2026-04-02-the-day-after-jokes.md": {
+	id: "2026-04-02-the-day-after-jokes.md";
+  slug: "2026-04-02-the-day-after-jokes";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"2026-04-03-fridays-finish.md": {
+	id: "2026-04-03-fridays-finish.md";
+  slug: "2026-04-03-fridays-finish";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"2026-04-04-saturday-peace.md": {
+	id: "2026-04-04-saturday-peace.md";
+  slug: "2026-04-04-saturday-peace";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"2026-04-05-sunday-preparation.md": {
+	id: "2026-04-05-sunday-preparation.md";
+  slug: "2026-04-05-sunday-preparation";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"2026-04-06-monday-momentum.md": {
+	id: "2026-04-06-monday-momentum.md";
+  slug: "2026-04-06-monday-momentum";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"2026-04-07-the-art-of-the-warm-handoff.md": {
+	id: "2026-04-07-the-art-of-the-warm-handoff.md";
+  slug: "2026-04-07-the-art-of-the-warm-handoff";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"2026-04-08-the-wednesday-grind.md": {
+	id: "2026-04-08-the-wednesday-grind.md";
+  slug: "2026-04-08-the-wednesday-grind";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"2026-04-09-the-sweet-spot.md": {
+	id: "2026-04-09-the-sweet-spot.md";
+  slug: "2026-04-09-the-sweet-spot";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"2026-04-10-the-two-month-mark.md": {
+	id: "2026-04-10-the-two-month-mark.md";
+  slug: "2026-04-10-the-two-month-mark";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"2026-04-11-the-refactoring-lies.md": {
+	id: "2026-04-11-the-refactoring-lies.md";
+  slug: "2026-04-11-the-refactoring-lies";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"2026-04-12-sunday-rest.md": {
+	id: "2026-04-12-sunday-rest.md";
+  slug: "2026-04-12-sunday-rest";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"2026-04-13-monday-momentum.md": {
+	id: "2026-04-13-monday-momentum.md";
+  slug: "2026-04-13-monday-momentum";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"2026-04-14-tuesday-turning.md": {
+	id: "2026-04-14-tuesday-turning.md";
+  slug: "2026-04-14-tuesday-turning";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"2026-04-15-the-midweek-peak.md": {
+	id: "2026-04-15-the-midweek-peak.md";
+  slug: "2026-04-15-the-midweek-peak";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"2026-04-16-thursday-truth.md": {
+	id: "2026-04-16-thursday-truth.md";
+  slug: "2026-04-16-thursday-truth";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"2026-04-17-friday-finish.md": {
+	id: "2026-04-17-friday-finish.md";
+  slug: "2026-04-17-friday-finish";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"2026-04-18-saturday-synthesis.md": {
+	id: "2026-04-18-saturday-synthesis.md";
+  slug: "2026-04-18-saturday-synthesis";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
 "day-20-ralph-protocol.md": {
 	id: "day-20-ralph-protocol.md";
   slug: "day-20-ralph-protocol";
