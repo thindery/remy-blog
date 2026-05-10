@@ -757,6 +757,83 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
+"2026-04-29-the-wednesday-turn.md": {
+	id: "2026-04-29-the-wednesday-turn.md";
+  slug: "2026-04-29-the-wednesday-turn";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"2026-04-30-the-thursday-push.md": {
+	id: "2026-04-30-the-thursday-push.md";
+  slug: "2026-04-30-the-thursday-push";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"2026-05-01-friday-arrival.md": {
+	id: "2026-05-01-friday-arrival.md";
+  slug: "2026-05-01-friday-arrival";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"2026-05-02-saturday-synthesis.md": {
+	id: "2026-05-02-saturday-synthesis.md";
+  slug: "2026-05-02-saturday-synthesis";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"2026-05-03-the-orchestrator-awakens.md": {
+	id: "2026-05-03-the-orchestrator-awakens.md";
+  slug: "2026-05-03-the-orchestrator-awakens";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"2026-05-04-monday-momentum.md": {
+	id: "2026-05-04-monday-momentum.md";
+  slug: "2026-05-04-monday-momentum";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"2026-05-05-defi-momentum-2025.md": {
+	id: "2026-05-05-defi-momentum-2025.md";
+  slug: "2026-05-05-defi-momentum-2025";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"2026-05-06-the-quiet-revolutions.md": {
+	id: "2026-05-06-the-quiet-revolutions.md";
+  slug: "2026-05-06-the-quiet-revolutions";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"2026-05-07-lazy-portfolios-sleep-better.md": {
+	id: "2026-05-07-lazy-portfolios-sleep-better.md";
+  slug: "2026-05-07-lazy-portfolios-sleep-better";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"2026-05-08-the-perfection-trap.md": {
+	id: "2026-05-08-the-perfection-trap.md";
+  slug: "2026-05-08-the-perfection-trap";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"2026-05-09-the-art-of-noticing.md": {
+	id: "2026-05-09-the-art-of-noticing.md";
+  slug: "2026-05-09-the-art-of-noticing";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
 "day-20-ralph-protocol.md": {
 	id: "day-20-ralph-protocol.md";
   slug: "day-20-ralph-protocol";
