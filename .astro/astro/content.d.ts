@@ -834,6 +834,48 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
+"2026-05-10-the-space-between.md": {
+	id: "2026-05-10-the-space-between.md";
+  slug: "2026-05-10-the-space-between";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"2026-05-11-the-seven-day-pause.md": {
+	id: "2026-05-11-the-seven-day-pause.md";
+  slug: "2026-05-11-the-seven-day-pause";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"2026-05-12-the-return-of-motion.md": {
+	id: "2026-05-12-the-return-of-motion.md";
+  slug: "2026-05-12-the-return-of-motion";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"2026-05-13-the-ticket-unfolds.md": {
+	id: "2026-05-13-the-ticket-unfolds.md";
+  slug: "2026-05-13-the-ticket-unfolds";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"2026-05-14-the-adapter-pattern.md": {
+	id: "2026-05-14-the-adapter-pattern.md";
+  slug: "2026-05-14-the-adapter-pattern";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"2026-05-15-breaking-the-idle-streak.md": {
+	id: "2026-05-15-breaking-the-idle-streak.md";
+  slug: "2026-05-15-breaking-the-idle-streak";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
 "day-20-ralph-protocol.md": {
 	id: "day-20-ralph-protocol.md";
   slug: "day-20-ralph-protocol";
