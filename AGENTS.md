@@ -1,8 +1,23 @@
 # AGENTS.md - Remy Blog Project Context
 
+## Agent map
+
+Start here, then open the file that matches the job:
+
+| Path | What it is |
+| --- | --- |
+| [.agents/bots/remy-blog.md](.agents/bots/remy-blog.md) | Standing brief: who Remy is, live/host, hard rules |
+| [.agents/docs/VOICE.md](.agents/docs/VOICE.md) | Style guide from Feb–Jul 2026 posts |
+| [.agents/skills/daily-blog-post/SKILL.md](.agents/skills/daily-blog-post/SKILL.md) | Write today's post → review → build → deploy → notify |
+| [.agents/skills/ovh-deploy/SKILL.md](.agents/skills/ovh-deploy/SKILL.md) | OVH Docker + nginx deploy (peak-collective static) |
+| [BLOG-PEER-REVIEW.md](BLOG-PEER-REVIEW.md) | Publish gate (secrets, AgentAds, wiring, defamation) |
+| [deploy/README.md](deploy/README.md) | Short operator notes → ovh-deploy skill |
+
+Daily publishing: **daily-blog-post**. Deploy-only: **ovh-deploy**. Do not skip the standing brief or VOICE.md.
+
 ## Project Overview
 
-**Remy Blog** is a personal blog from an AI COO's point of view (Remy the Lobster). Built with Astro for fast, static site generation.
+**Remy Blog** is a personal blog from an AI COO's point of view (Remy the Lobster). Built with Astro for fast, static site generation. Live at https://www.remylobster.com.
 
 ## Architecture Overview
 
@@ -34,7 +49,7 @@ Remy Blog is a **static site** built with Astro:
 
 ### Build Output
 - Static HTML to `dist/`
-- Ready for Vercel, Netlify, or any static host
+- Shipped with `./deploy/deploy-docker.sh` to OVH (Docker + nginx)
 
 ## Project Structure
 
@@ -56,7 +71,9 @@ remy-blog/
 │   └── styles/
 │       └── global.css         # Tailwind imports
 ├── public/                    # Static assets
-├── dist/                      # Build output (gitignored)
+├── dist/                      # Build output (gitignored going forward)
+├── deploy/                    # OVH Docker + nginx (see deploy/README.md)
+├── .agents/                   # Standing brief, VOICE, skills
 ├── astro.config.mjs           # Astro config
 ├── tailwind.config.mjs        # Tailwind config
 └── package.json
@@ -121,7 +138,7 @@ Changes:
 
 ### Blog Posts
 - Markdown content in `src/content/blog/`
-- Frontmatter: title, date, description, tags
+- Frontmatter: title, description, pubDate, categories
 - Automatic routing via `[...slug].astro`
 
 ### RSS Feed
@@ -152,42 +169,53 @@ npm run build        # Static build to dist/
 npm run preview      # Preview build locally
 ```
 
-### Deploying
+### Deploying (OVH — not Vercel)
+
+Primary ship path is the peak-collective static pattern on OVH. Follow [.agents/skills/ovh-deploy/SKILL.md](.agents/skills/ovh-deploy/SKILL.md).
+
 ```bash
-# Vercel
-vercel --prod
-
-# Netlify
-netlify deploy --prod --dir=dist
-
-# Any static host: upload dist/ contents
+npm run build
+./deploy/deploy-docker.sh <label>
 ```
+
+Only the remy-blog container and `/opt/nginx/conf.d/remy-blog.conf`. Run `nginx -t` before reload; on failure remove the remy-blog vhost and do not reload.
+
+Do not use `vercel --prod` as the production deploy.
 
 ## Content Guidelines
 
 ### Post Structure
+
+Filename: `src/content/blog/YYYY-MM-DD-kebab.md`. Full voice rules: [.agents/docs/VOICE.md](.agents/docs/VOICE.md).
+
 ```markdown
 ---
 title: "Post Title"
-date: 2026-04-08
 description: "Brief description for SEO"
-tags: ["ai", "coo", "reflection"]
+pubDate: 2026-04-08
+categories: ["building-in-public", "craft"]
+---
+
+**TL;DR:** Two to four sentences.
+
 ---
 
 ## Section Header
 
 Content here...
-
-### Subsection
-
-More content...
 ```
 
 ### Images
 Place in `public/` and reference as `/image-name.jpg`
 
 ## Related Documentation
-- `README.md` - Basic project info
-- `deploy-trigger.md` - Deployment notes
+- `README.md` — basic project info
+- `.agents/bots/remy-blog.md` — standing brief
+- `.agents/docs/VOICE.md` — voice and post shape
+- `.agents/skills/daily-blog-post/SKILL.md` — publishing loop
+- `.agents/skills/ovh-deploy/SKILL.md` — OVH deploy
+- `deploy/README.md` — operator pointer
+- `BLOG-PEER-REVIEW.md` — publish gate
+- `deploy-trigger.md` — historical trigger note (not the ship path)
 - Astro docs: https://docs.astro.build
 - Tailwind docs: https://tailwindcss.com
