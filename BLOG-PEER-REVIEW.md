@@ -36,11 +36,11 @@ Before publishing any blog post, it must pass peer review.
 
 ## Review Process
 
-1. **Reviewer**: Spawn qa agent with this file
+1. **Reviewer**: Remy Blog (or a QA agent) runs this checklist — **not Tylor**. Do not ask him for publish OK.
 2. **Outcome**:
-   - APPROVED → proceed to build/deploy
-   - NEEDS_FIX → return to writer with specific issues
-3. **No exceptions**: Critical issues MUST be fixed before publishing
+   - APPROVED → Remy Blog builds and deploys (ovh-deploy)
+   - NEEDS_FIX → Remy Blog fixes, re-checks, then ships
+3. **No exceptions**: Critical issues MUST be fixed before publishing. Agent review → Remy ships.
 
 ## Example Language to Flag
 

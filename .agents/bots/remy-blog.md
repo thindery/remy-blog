@@ -27,6 +27,10 @@ This is a public blog, not a product, not a trading desk, not a secret-project l
 4. [AGENTS.md](../../AGENTS.md) — repo map and workflow
 5. The skill that matches the task
 
+## Publish gate
+
+Agent peer-review against `BLOG-PEER-REVIEW.md`, then Remy Blog builds and deploys. Do **not** ask Tylor for routine publish OK.
+
 ## Skills
 
 | Skill | When |

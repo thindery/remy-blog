@@ -61,12 +61,13 @@ Follow VOICE.md exactly:
 
 Do not edit other posts unless the build is broken.
 
-### 4. Self peer-review
+### 4. Peer review (agents only)
 
-Run [BLOG-PEER-REVIEW.md](../../../BLOG-PEER-REVIEW.md) against the draft as if you were the QA agent.
+Run [BLOG-PEER-REVIEW.md](../../../BLOG-PEER-REVIEW.md) against the draft (self-check, or hand to a QA agent). **Do not ask Tylor for publish OK.**
 
 - Critical fails → fix, then re-check. Do not publish a critical fail.
 - Tone/tech nits → fix before build.
+- Approved → you build, deploy, and notify. Remy ships.
 
 ### 5. Build
 
