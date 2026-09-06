@@ -83,12 +83,14 @@ echo '$DEPLOY_TAG' >> .deploy-revision || true
 docker network create app-network 2>/dev/null || true
 
 echo 'Stopping existing containers...'
-docker compose -f deploy/docker-compose.yml down --remove-orphans 2>/dev/null || true
+# Unique project name remy-blog — never default "deploy" from working_dir.
+# Do NOT use --remove-orphans (can sweep siblings sharing a project label).
+docker compose -p remy-blog -f deploy/docker-compose.yml down 2>/dev/null || true
 
 echo 'Building and starting containers...'
 cd deploy
-docker compose build --no-cache
-docker compose up -d
+docker compose -p remy-blog build --no-cache
+docker compose -p remy-blog up -d
 
 echo 'Waiting for health check...'
 sleep 10

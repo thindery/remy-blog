@@ -85,3 +85,9 @@ Do not request a new CA flow, do not overwrite another site's certs, do not comm
 - `nginx -t` passed before reload, or vhost removed and no reload
 - Health green
 - DNS touched only if cutover was still pending and health was green
+
+## Compose safety
+
+- Project name must be **`remy-blog`** (`name:` in `deploy/docker-compose.yml` and `-p remy-blog` in the script).
+- **Never** `docker compose down --remove-orphans` on this host — it can remove unrelated containers that share a project label.
+

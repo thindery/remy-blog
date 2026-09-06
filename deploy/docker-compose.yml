@@ -1,4 +1,4 @@
-version: '3.8'
+name: remy-blog
 
 services:
   remy-blog:
