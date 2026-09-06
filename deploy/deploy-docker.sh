@@ -85,6 +85,8 @@ docker network create app-network 2>/dev/null || true
 echo 'Stopping existing containers...'
 # Unique project name remy-blog — never default "deploy" from working_dir.
 # Do NOT use --remove-orphans (can sweep siblings sharing a project label).
+# Tear down legacy project label "deploy" for THIS compose file only (pre-harden leftover).
+docker compose -p deploy -f deploy/docker-compose.yml down 2>/dev/null || true
 docker compose -p remy-blog -f deploy/docker-compose.yml down 2>/dev/null || true
 
 echo 'Building and starting containers...'
