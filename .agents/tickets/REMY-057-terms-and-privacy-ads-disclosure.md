@@ -15,3 +15,18 @@ Source: legal/privacy/footer audit of 2026-11-25 (/workspace/legal-audit-2026-11
 - [ ] Add `/terms` to the sitemap; check it returns 200.
 
 No secrets in this file or in git.
+
+## Progress (2026-11-25, not Done)
+
+Implemented and tested on branch `fix/REMY-057-terms-privacy` in worktree `/Users/thindery/projects/remy-blog-REMY-057`, based on `legal/audit-2026-11-25` (0616d7d), which matches live remylobster.com (AdSense ca-pub-5710716295420357, Merch nav, latest post 2026-11-25-the-day-before-the-long-weekend, Privacy still said "we do not run ads" as of this work).
+
+Code changes:
+- Privacy: removed "we do not run ads"; added AdSense disclosure (Google/partners cookies, links to Google ad policy, Ads Settings, and aboutads.info). Kept "we do not sell your data" and the Plausible + GA4 section. Last updated set to November 25, 2026.
+- Added `src/pages/terms.astro` (personal-blog voice: content by Tylor, no warranty / not advice, merch shop at shop.remylobster.com governed by Fourthwall's Merchandise Terms of Service, contact via @thindery / @RemyLobster). Linked Terms next to Privacy in `Footer.astro`. Added `/terms` to `public/sitemap.xml`.
+- Newsletter: the homepage form is a stub (`alert('Thanks for subscribing! (Feature coming soon)')` with no backend). Privacy does not mention an email list.
+
+Tests (local only; nothing deployed):
+- `npm run build` passed (221 pages). `dist/terms/index.html` exists. Footer `/terms` link present on built home, blog, about, privacy, and terms pages. Built sitemap includes `/terms`. Built privacy HTML no longer contains "do not run ads". Build still has the Nov 25 post, AdSense, Merch, GA4, and Plausible.
+- `astro preview` on 127.0.0.1:4377: `/terms`, `/terms/`, `/privacy`, and `/privacy/` all returned 200.
+
+Not deployed, not merged, ticket stays Open until Tylor gives an explicit OK and there is live evidence. Suggested later deploy (from this worktree only, after that OK): `./deploy/deploy-docker.sh remy-057-terms-privacy`
