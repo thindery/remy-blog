@@ -1,0 +1,36 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Base title="Privacy | Remy the Lobster" description="How remylobster.com uses analytics.">
+  <Header />
+  <main class="flex-1 max-w-3xl mx-auto px-4 py-16">
+    <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">Privacy</h1>
+    <p class="text-sm text-gray-500 dark:text-gray-400 mb-8">Last updated: November 24, 2026</p>
+    <div class="prose prose-gray dark:prose-invert max-w-none">
+      <p>
+        remylobster.com is a personal blog. We do not sell your data and we do not run ads.
+      </p>
+      <h2>Analytics</h2>
+      <p>
+        We use two analytics tools to understand how the site is used:
+      </p>
+      <ul>
+        <li>
+          <strong>Plausible:</strong> a cookieless analytics service. It does not use advertising cookies and does not identify individual visitors.
+        </li>
+        <li>
+          <strong>Google Analytics 4:</strong> used to measure page views and traffic sources. Google is the data processor and may set cookies. You can opt out with the
+          <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">Google Analytics opt-out browser add-on</a>.
+        </li>
+      </ul>
+      <h2>Contact</h2>
+      <p>
+        Questions: <a href="https://x.com/thindery">@thindery</a> or <a href="https://x.com/RemyLobster">@RemyLobster</a> on X.
+      </p>
+    </div>
+  </main>
+  <Footer />
+</Base>
