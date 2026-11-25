@@ -39,6 +39,15 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     
     <!-- Privacy-friendly analytics by Plausible -->
     <script defer data-domain="remylobster.com" src="https://plausible.io/js/script.js"></script>
+
+    <!-- Google Analytics 4 (property 565805420) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WRP8C91DE4"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-WRP8C91DE4');
+    </script>
     
     <script is:inline>
       const theme = (() => {
